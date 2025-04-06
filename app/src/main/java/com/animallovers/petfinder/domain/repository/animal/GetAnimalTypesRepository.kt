@@ -8,12 +8,12 @@ import com.animallovers.petfinder.presentation.util.PetFinderResult
 import javax.inject.Inject
 
 interface GetAnimalTypesRepository {
-    suspend fun getAnimalTypes(authToken: String) : PetFinderResult<GetAnimalTypesResponse>
+    suspend fun getAnimalTypes(authToken: String): PetFinderResult<GetAnimalTypesResponse>
 }
 
 class GetAnimalTypesRepositoryImpl @Inject constructor(
     private val apiService: ApiService
-): GetAnimalTypesRepository {
+) : GetAnimalTypesRepository {
     override suspend fun getAnimalTypes(authToken: String): PetFinderResult<GetAnimalTypesResponse> {
         return safeApiCall { apiService.getAnimalTypes(authToken) }.toResult()
     }

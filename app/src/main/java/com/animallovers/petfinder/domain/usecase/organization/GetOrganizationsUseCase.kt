@@ -4,5 +4,6 @@ import com.animallovers.petfinder.domain.repository.organization.GetOrganization
 import javax.inject.Inject
 
 class GetOrganizationsUseCase @Inject constructor(private val getOrganizationsRepository: GetOrganizationRepository) {
-    suspend fun getOrganizations(id: String, authToken: String) = getOrganizationsRepository.getOrganization(id, authToken)
+    suspend fun getOrganizations(id: String, authToken: String) =
+        getOrganizationsRepository.getOrganization(id, authToken)
 }

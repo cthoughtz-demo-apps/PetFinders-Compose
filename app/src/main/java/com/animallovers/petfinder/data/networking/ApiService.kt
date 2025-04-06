@@ -10,7 +10,6 @@ import com.animallovers.petfinder.domain.model.organization.GetOrganizationsResp
 import com.animallovers.petfinder.domain.model.token.TokenRequest
 import com.animallovers.petfinder.domain.model.token.TokenResponse
 import retrofit2.http.Body
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -23,23 +22,35 @@ interface ApiService {
     suspend fun getAnimals(@Header("Authorization") authToken: String): GetAnimalsResponse
 
     @GET("/v2/animals/{id}")
-    suspend fun getAnimal(@Path("id") id: String,@Header("Authorization") authToken: String): GetAnimalResponse
+    suspend fun getAnimal(
+        @Path("id") id: String,
+        @Header("Authorization") authToken: String
+    ): GetAnimalResponse
 
     @GET("/v2/types")
     suspend fun getAnimalTypes(@Header("Authorization") authToken: String): GetAnimalTypesResponse
 
     @GET("/v2/types/{type}")
-    suspend fun getASingleAnimal(@Path("type") type: String,@Header("Authorization") authToken: String): GetASingleAnimalTypeResponse
+    suspend fun getASingleAnimal(
+        @Path("type") type: String,
+        @Header("Authorization") authToken: String
+    ): GetASingleAnimalTypeResponse
 
     @GET("/v2/types/{type}/breeds")
-    suspend fun getAnimalBreeds(@Path("type") type: String,@Header("Authorization") authToken: String): GetAnimalBreedsResponse
+    suspend fun getAnimalBreeds(
+        @Path("type") type: String,
+        @Header("Authorization") authToken: String
+    ): GetAnimalBreedsResponse
 
     // Organization
     @GET("/v2/organizations")
     suspend fun getOrganizations(@Header("Authorization") authToken: String): GetOrganizationsResponse
 
     @GET("/v2/organizations/{id}")
-    suspend fun getOrganization(@Path("id") id: String,@Header("Authorization") authToken: String): GetOrganizationResponse
+    suspend fun getOrganization(
+        @Path("id") id: String,
+        @Header("Authorization") authToken: String
+    ): GetOrganizationResponse
 
     // Misc
     @POST("/v2/oauth2/token")

@@ -28,27 +28,27 @@ abstract class RepositoryModules {
 
     @Singleton
     @Binds
-    abstract fun provideTokenRepository(tokenRepositoryImpl: GetAccessTokenImpl) : TokenRepository
+    abstract fun provideTokenRepository(tokenRepositoryImpl: GetAccessTokenImpl): TokenRepository
 
     @Singleton
     @Binds
-    abstract fun provideGetAnimalsRepository(animalsRepositoryImpl: GetAnimalsRepositoryImpl) : GetAnimalsRepository
+    abstract fun provideGetAnimalsRepository(animalsRepositoryImpl: GetAnimalsRepositoryImpl): GetAnimalsRepository
 
     @Singleton
     @Binds
-    abstract fun provideGetBreedsRepository(getAnimalBreedsRepositoryImpl: GetAnimalBreedsRepositoryImpl) : GetAnimalBreedsRepository
+    abstract fun provideGetBreedsRepository(getAnimalBreedsRepositoryImpl: GetAnimalBreedsRepositoryImpl): GetAnimalBreedsRepository
 
     @Singleton
     @Binds
-    abstract fun provideGetAnimalRepository(getAnimalRepositoryImpl: GetAnimalRepositoryImpl) : GetAnimalRepository
+    abstract fun provideGetAnimalRepository(getAnimalRepositoryImpl: GetAnimalRepositoryImpl): GetAnimalRepository
 
     @Singleton
     @Binds
-    abstract fun provideGetAnimalTypesRepository(getAnimalTypeRepositoryImpl: GetAnimalTypesRepositoryImpl) : GetAnimalTypesRepository
+    abstract fun provideGetAnimalTypesRepository(getAnimalTypeRepositoryImpl: GetAnimalTypesRepositoryImpl): GetAnimalTypesRepository
 
     @Singleton
     @Binds
-    abstract fun provideGetASingleAnimalTypeRepository(getASingleAnimalTypeRepositoryImpl: GetASingleAnimalTypeRepositoryImpl) : GetASingleAnimalTypeRepository
+    abstract fun provideGetASingleAnimalTypeRepository(getASingleAnimalTypeRepositoryImpl: GetASingleAnimalTypeRepositoryImpl): GetASingleAnimalTypeRepository
 
     @Singleton
     @Binds
@@ -56,5 +56,5 @@ abstract class RepositoryModules {
 
     @Singleton
     @Binds
-    abstract fun provideGetOrganizationsRepository(getOrganizationsRepositoryImpl: GetOrganizationsRepositoryImpl) : GetOrganizationsRepository
+    abstract fun provideGetOrganizationsRepository(getOrganizationsRepositoryImpl: GetOrganizationsRepositoryImpl): GetOrganizationsRepository
 }

@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.ui.text.google.fonts)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -107,12 +108,25 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     // mock
-    testImplementation("io.mockk:mockk:1.13.8")
+    testImplementation(libs.mockk)
 
     // test
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // coil
-    implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation("io.coil-kt:coil-svg:2.6.0")
+    implementation(libs.coil.compose)
+    implementation(libs.coil.svg)
+
+    // Splash Api
+    implementation(libs.androidx.core.splashscreen)
+
+    // Pager and Indicators - Accompanist
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
+
+    // DataStore Preferences
+    implementation(libs.androidx.datastore.preferences)
+
+    // Window Sizes
+    implementation("androidx.compose.material3:material3-window-size-class:1.3.1")
 }

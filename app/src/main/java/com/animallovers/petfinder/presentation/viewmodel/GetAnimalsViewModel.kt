@@ -21,7 +21,7 @@ class GetAnimalsViewModel @Inject constructor(
         MutableStateFlow<PetFinderResult<GetAnimalsResponse>>(PetFinderResult.None)
     val getAnimalsResultFlow = _getAnimalResultFlow.asStateFlow()
 
-    fun getAnimals(accessToken : String) {
+    fun getAnimals(accessToken: String) {
         _getAnimalResultFlow.update { PetFinderResult.Loading }
         viewModelScope.launch {
             val result = getAnimalsUseCase.getAnimals("Bearer $accessToken")

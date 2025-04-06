@@ -4,5 +4,6 @@ import com.animallovers.petfinder.domain.repository.animal.GetASingleAnimalTypeR
 import javax.inject.Inject
 
 class GetASingleAnimalUseCase @Inject constructor(private val getASingleAnimalTypeRepository: GetASingleAnimalTypeRepository) {
-    suspend fun getASingleAnimal(type: String, authToken: String) = getASingleAnimalTypeRepository.getASingleAnimal(type, authToken)
+    suspend fun getASingleAnimal(type: String, authToken: String) =
+        getASingleAnimalTypeRepository.getASingleAnimal(type, authToken)
 }

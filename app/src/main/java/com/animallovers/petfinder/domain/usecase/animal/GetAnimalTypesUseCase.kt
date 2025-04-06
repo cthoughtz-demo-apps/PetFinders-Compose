@@ -6,5 +6,6 @@ import javax.inject.Inject
 class GetAnimalTypesUseCase @Inject constructor(
     private val getAnimalTypesRepository: GetAnimalTypesRepository
 ) {
-    suspend fun getAnimalTypes(authToken: String) = getAnimalTypesRepository.getAnimalTypes(authToken)
+    suspend fun getAnimalTypes(authToken: String) =
+        getAnimalTypesRepository.getAnimalTypes(authToken)
 }

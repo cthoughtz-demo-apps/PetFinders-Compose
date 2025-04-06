@@ -8,7 +8,7 @@ import com.animallovers.petfinder.presentation.util.PetFinderResult
 import javax.inject.Inject
 
 interface GetAnimalsRepository {
-    suspend fun getAnimals(authToken: String) : PetFinderResult<GetAnimalsResponse>
+    suspend fun getAnimals(authToken: String): PetFinderResult<GetAnimalsResponse>
 }
 
 class GetAnimalsRepositoryImpl @Inject constructor(
