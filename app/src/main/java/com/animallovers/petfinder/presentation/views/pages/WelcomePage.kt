@@ -44,11 +44,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.presentation.navigation.Pages
 import com.animallovers.petfinder.presentation.util.OnBoardingPage
+import com.animallovers.petfinder.presentation.viewmodel.WelcomeViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -57,7 +59,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WelcomePage(navController: NavHostController) {
+fun WelcomePage(navController: NavHostController, welcomeViewModel: WelcomeViewModel = hiltViewModel()) {
 
     val pages = listOf(
         OnBoardingPage.First,
@@ -117,6 +119,7 @@ fun WelcomePage(navController: NavHostController) {
                     }
             ) {
                 TextButton(onClick = {
+                    welcomeViewModel.saveOnBoardingState(completed = true)
                     navController.popBackStack()
                     navController.navigate(Pages.Home.route)
                 }, modifier = Modifier.weight(1f)) {
@@ -137,6 +140,7 @@ fun WelcomePage(navController: NavHostController) {
                             }
                         } else {
                             // create WelcomeViewModel that saves the orn
+                            welcomeViewModel.saveOnBoardingState(completed = true)
                             navController.popBackStack()
                             navController.navigate(Pages.Home.route)
                         }

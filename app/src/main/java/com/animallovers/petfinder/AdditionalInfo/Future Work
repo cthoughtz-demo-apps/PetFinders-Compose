@@ -4,4 +4,9 @@ TODO
 2. Implement SplashViewModel
 3. Implement Splash functionality
 4. Implement Saved State for onboarding
-5.
+5. (Bug) Add Spacer between the skip and next/lets get started button (WHEN YOU CLICK ON THE EMPTY
+ SPACE BETWEEN THE 2 BUTTONS IT TAKES YOU TO THE HOME SCREEN BECAUSE THE SKIP BUTTON IS LONGER THEN
+ IT SHOULD BE)
+
+
+ 1.
