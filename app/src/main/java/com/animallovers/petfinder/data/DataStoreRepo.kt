@@ -11,10 +11,11 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "on_boarding_pref")
 
-class DataStoreRepo(context: Context) {
+class DataStoreRepo @Inject constructor(context: Context) {
 
     private object PreferencesKey {
         val onBoardindKey = booleanPreferencesKey(name = "on_boarding_completed")

@@ -1,10 +1,13 @@
 package com.animallovers.petfinder.data.di
 
+import android.content.Context
+import com.animallovers.petfinder.data.DataStoreRepo
 import com.animallovers.petfinder.data.networking.ApiService
 import com.animallovers.petfinder.presentation.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -49,4 +52,10 @@ object NetworkModule {
     fun provideApiClient(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreRepo(
+        @ApplicationContext context: Context
+    ) = DataStoreRepo(context = context)
 }
