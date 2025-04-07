@@ -59,7 +59,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WelcomePage(navController: NavHostController, welcomeViewModel: WelcomeViewModel = hiltViewModel()) {
+fun WelcomePage(
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
 
     val pages = listOf(
         OnBoardingPage.First,
