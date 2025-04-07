@@ -1,12 +1,17 @@
 TODO
 
-1. Create Welcome ViewModel that save the onboarding State (Done)
-2. Implement SplashViewModel (Done)
-3. Implement Splash functionality (Done
-4. Implement Saved State for onboarding (Done)
-5. (Bug) Add Spacer between the skip and next/lets get started button (WHEN YOU CLICK ON THE EMPTY
- SPACE BETWEEN THE 2 BUTTONS IT TAKES YOU TO THE HOME SCREEN BECAUSE THE SKIP BUTTON IS LONGER THEN
- IT SHOULD BE) (Done)
+ 1. Add PetPages ( Might need to just change the name of the HomePage to pets Page
+ 2. Add TypePage
+ 3. Add OrgsPage
+ 4. Create BottomNavigation Bar
+ 5. Add PetPage, TypePage, OrgsPage to bottom navigation
 
+  1. Confirm that the endpoint provides all of the information that is on the Pets Screen
 
- 1.
+ 2. Note: From the PetHomeScreen if you selected Bello it will show details which is the screen to the
+ left of it. If you select viewall it will show the last screen in that row (the one that says NearBy Pets at the top)
+ if you select vew all for the Adopt Pets it will show the screen next to the last screen in that row.
+ Not really sure what the Search is for on the Pets Screen (Remove it and also remove the setting next to it.
+
+ 3. Check the api to see if you are in some way able to do something with notifications. If you are not then
+ remove the icon that is in the top right screen on the PagesScreen.
