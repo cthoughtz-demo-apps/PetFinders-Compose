@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -119,22 +120,23 @@ fun WelcomePage(
                         bottom.linkTo(parent.bottom)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    }
+                    },
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 TextButton(onClick = {
                     welcomeViewModel.saveOnBoardingState(completed = true)
                     navController.popBackStack()
                     navController.navigate(Pages.Home.route)
-                }, modifier = Modifier.weight(1f)) {
+                }) {
                     Text(
                         "Skip",
                         modifier = Modifier
-                            .fillMaxWidth()
                             .padding(2.dp),
                         textAlign = TextAlign.Left,
                         color = Color.Black
                     )
                 }
+
                 Button(
                     onClick = {
                         if (buttonText.value == "Next") {
@@ -142,7 +144,6 @@ fun WelcomePage(
                                 pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             }
                         } else {
-                            // create WelcomeViewModel that saves the orn
                             welcomeViewModel.saveOnBoardingState(completed = true)
                             navController.popBackStack()
                             navController.navigate(Pages.Home.route)
@@ -163,6 +164,7 @@ fun WelcomePage(
     }
 }
 
+// TODO Move function to a separate util.kt
 @Composable
 fun getNavigationMode(): Int? {
     val context = LocalContext.current
@@ -180,6 +182,7 @@ fun getNavigationMode(): Int? {
     }
 }
 
+// TODO Move function to a separate util.kt
 @Composable
 fun isThreeButtonNavSystem(): Boolean {
     return getNavigationMode() == 0 // 0=3-button, 1=2-button, 2=gesture
