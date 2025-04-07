@@ -19,6 +19,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.rememberNavController
@@ -27,15 +28,25 @@ import com.animallovers.petfinder.presentation.navigation.Pages
 import com.animallovers.petfinder.presentation.navigation.SetupNavGraph
 import com.animallovers.petfinder.presentation.util.PetFinderResult
 import com.animallovers.petfinder.presentation.viewmodel.GetAnimalsViewModel
+import com.animallovers.petfinder.presentation.viewmodel.SplashViewModel
 import com.animallovers.petfinder.presentation.viewmodel.TokenViewModel
 import com.animallovers.petfinder.ui.theme.PetFinderTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var splashViewModel: SplashViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        installSplashScreen().setKeepOnScreenCondition {
+            !splashViewModel.isLoading.value
+        }
 
         enableEdgeToEdge()
 
@@ -43,9 +54,9 @@ class MainActivity : ComponentActivity() {
             PetFinderTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
 
+                    val screen by splashViewModel.startDestination
                     val navController = rememberNavController()
-                    // Created SplashViewModel and pass it into startDestination
-                    SetupNavGraph(navController, startDestination = Pages.Welcome.route)
+                    SetupNavGraph(navController, startDestination = screen)
                 }
             }
         }
