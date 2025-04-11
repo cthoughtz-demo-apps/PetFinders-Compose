@@ -10,4 +10,5 @@
     <color name="purple">#6504B5</color>
     <color name="light_purple">#EADCF5</color>
     <color name="light_grey">#515151</color>
+    <color name="line_color_grey">#DFDFDF</color>
 </resources>

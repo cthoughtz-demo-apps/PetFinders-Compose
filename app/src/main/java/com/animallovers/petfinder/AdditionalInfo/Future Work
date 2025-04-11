@@ -15,3 +15,29 @@ TODO
 
  3. Check the api to see if you are in some way able to do something with notifications. If you are not then
  remove the icon that is in the top right screen on the PagesScreen.
+4. Move The code below to util
+
+ // TODO Move function to a separate util.kt
+ @Composable
+ fun getNavigationMode(): Int? {
+     val context = LocalContext.current
+     return remember {
+         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+             try {
+                 Settings.Secure.getInt(
+                     context.contentResolver,
+                     "navigation_mode"
+                 )
+             } catch (e: Exception) {
+                 null
+             }
+         } else null
+     }
+ }
+
+ // TODO Move function to a separate util.kt
+ @Composable
+ fun isThreeButtonNavSystem(): Boolean {
+     return getNavigationMode() == 0 // 0=3-button, 1=2-button, 2=gesture
+ }
+

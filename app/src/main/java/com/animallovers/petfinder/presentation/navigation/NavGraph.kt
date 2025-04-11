@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.animallovers.petfinder.presentation.views.pages.HomePage
 import com.animallovers.petfinder.presentation.views.pages.SplashPage
 import com.animallovers.petfinder.presentation.views.pages.WelcomePage
 
@@ -21,7 +22,7 @@ fun SetupNavGraph(
         }
 
         composable(route = Pages.Home.route) {
-            //
+            HomePage()
         }
 
         composable(route = Pages.Splash.route) {
