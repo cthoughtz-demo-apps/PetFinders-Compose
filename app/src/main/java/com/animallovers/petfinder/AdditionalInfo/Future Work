@@ -1,11 +1,5 @@
 TODO
 
- 1. Add PetPages ( Might need to just change the name of the HomePage to pets Page
- 2. Add TypePage
- 3. Add OrgsPage
- 4. Create BottomNavigation Bar
- 5. Add PetPage, TypePage, OrgsPage to bottom navigation
-
   1. Confirm that the endpoint provides all of the information that is on the Pets Screen
 
  2. Note: From the PetHomeScreen if you selected Bello it will show details which is the screen to the
