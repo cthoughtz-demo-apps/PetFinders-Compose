@@ -68,8 +68,7 @@ fun HomePage() {
                             )
                         )
                         .padding(10.dp),
-                    elevation = 0.dp
-                    ,
+                    elevation = 0.dp,
                     backgroundColor = Color.White,
                     // contentColor = Color.Green
                 ) {

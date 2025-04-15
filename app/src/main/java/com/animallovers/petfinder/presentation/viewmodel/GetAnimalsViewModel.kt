@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GetAnimalsViewModel @Inject constructor(
-    val getAnimalsUseCase: GetAnimalsUseCase
+    private val getAnimalsUseCase: GetAnimalsUseCase,
 ) : ViewModel() {
 
     private val _getAnimalResultFlow =

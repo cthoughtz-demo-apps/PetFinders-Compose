@@ -10,7 +10,9 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun OrgsPage(modifier: Modifier = Modifier) {
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.Green)
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.Green)
     ) {
 
     }

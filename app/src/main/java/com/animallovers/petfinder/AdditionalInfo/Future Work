@@ -2,6 +2,16 @@ TODO
 
   1. Confirm that the endpoint provides all of the information that is on the Pets Screen
 
+    Do not add Location at the top it is not in the response
+    Do not add any notification bell it is not in any of the apis
+    Do not add the search bar
+    Do not add the settings
+    Do not add  the Adopt Pets
+
+    Add the NearBy Pets and make is a columnLazyLIst that is veritical and put 2 animals per row in
+    the column
+
+
  2. Note: From the PetHomeScreen if you selected Bello it will show details which is the screen to the
  left of it. If you select viewall it will show the last screen in that row (the one that says NearBy Pets at the top)
  if you select vew all for the Adopt Pets it will show the screen next to the last screen in that row.
@@ -34,4 +44,11 @@ TODO
  fun isThreeButtonNavSystem(): Boolean {
      return getNavigationMode() == 0 // 0=3-button, 1=2-button, 2=gesture
  }
+
+
+ 5. Change the tint on the items in the navigation when they are selected to purple, deselect them
+ when they are not selected, Pets should be selected by default.
+
+
+
 

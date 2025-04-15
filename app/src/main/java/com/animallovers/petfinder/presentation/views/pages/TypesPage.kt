@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.Color
 fun TypesPages(modifier: Modifier = Modifier) {
 
     Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.Red)
-    ) {  }
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.Red)
+    ) { }
 }
