@@ -70,17 +70,21 @@ fun HomePage() {
                         .padding(10.dp),
                     elevation = 0.dp,
                     backgroundColor = Color.White,
-                    // contentColor = Color.Green
                 ) {
                     items.forEach { page ->
                         BottomNavigationItem(
                             icon = {
                                 Icon(
-                                    painter = painterResource(page.icon),
-                                    contentDescription = null
+                                    painter = when(page.route) {
+                                        "homePet" -> painterResource(R.drawable.pet_home)
+                                        "types" -> painterResource(R.drawable.pet)
+                                        else -> painterResource(R.drawable.building)
+                                    },
+                                    contentDescription = null,
+                                    tint = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black
                                 )
                             },
-                            label = { Text(page.label) },
+                            label = { Text(page.label, color = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black) },
                             selected = currentRoute == page.route,
                             onClick = {
                                 navController.navigate(page.route) {
@@ -93,7 +97,7 @@ fun HomePage() {
                                     restoreState = true
                                 }
                                 currentRoute = page.route
-                            }
+                            },
                         )
                     }
                 }

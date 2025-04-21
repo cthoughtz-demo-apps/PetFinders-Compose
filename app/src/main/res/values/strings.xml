@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PetFinder</string>
+    <string name="near_by_pets">Nearby Pets</string>
 </resources>
