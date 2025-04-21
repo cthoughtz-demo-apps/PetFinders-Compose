@@ -18,11 +18,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -30,7 +32,9 @@ import com.animallovers.petfinder.R
 import com.animallovers.petfinder.presentation.navigation.BottomNavigationPages
 
 @Composable
-fun HomePage() {
+fun HomePage(
+    navController: NavHostController
+) {
 
     val items = listOf(
         BottomNavigationPages.HomePet,
@@ -39,7 +43,7 @@ fun HomePage() {
     )
 
     var currentRoute by remember { mutableStateOf(BottomNavigationPages.HomePet.route) }
-    val navController = rememberNavController()
+    val bottomBarNavController = rememberNavController()
     val bottomPaddingLayout = if (isThreeButtonNavSystem()) 48.dp else 0.dp
 
     Scaffold(
@@ -87,8 +91,8 @@ fun HomePage() {
                             label = { Text(page.label, color = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black) },
                             selected = currentRoute == page.route,
                             onClick = {
-                                navController.navigate(page.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
+                                bottomBarNavController.navigate(page.route) {
+                                    popUpTo(bottomBarNavController.graph.findStartDestination().id) {
                                         saveState = true
                                     }
 
@@ -105,12 +109,12 @@ fun HomePage() {
         }
     ) { innerPadding ->
         NavHost(
-            navController = navController,
+            navController = bottomBarNavController,
             startDestination = BottomNavigationPages.HomePet.route,
             modifier = Modifier.padding(innerPadding),
 
             ) {
-            composable(BottomNavigationPages.HomePet.route) { HomePetPage() }
+            composable(BottomNavigationPages.HomePet.route) { HomePetPage(navigate = navController) }
             composable(BottomNavigationPages.Types.route) { TypesPages() }
             composable(BottomNavigationPages.Orgs.route) { OrgsPage() }
         }
@@ -121,7 +125,9 @@ fun HomePage() {
 @Preview(showBackground = true)
 @Composable
 fun HomePageGesturePreview(modifier: Modifier = Modifier) {
-    HomePage()
+    HomePage(
+        navController = NavHostController(LocalContext.current)
+    )
 }
 
 
@@ -132,5 +138,7 @@ fun HomePageGesturePreview(modifier: Modifier = Modifier) {
 )
 @Composable
 fun HomePageButtonsPreview(modifier: Modifier = Modifier) {
-    HomePage()
+    HomePage(
+        navController = NavHostController(LocalContext.current)
+    )
 }

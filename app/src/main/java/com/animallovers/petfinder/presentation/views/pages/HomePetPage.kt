@@ -3,6 +3,7 @@ package com.animallovers.petfinder.presentation.views.pages
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,6 +26,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -37,9 +39,11 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.domain.model.animal.GetAnimalsResponse
+import com.animallovers.petfinder.presentation.navigation.Pages
 import com.animallovers.petfinder.presentation.util.PetFinderResult
 import com.animallovers.petfinder.presentation.viewmodel.GetAnimalsViewModel
 import com.animallovers.petfinder.presentation.viewmodel.TokenViewModel
@@ -48,9 +52,9 @@ private const val TAG = "HomePetPage"
 
 @Composable
 fun HomePetPage(
-    modifier: Modifier = Modifier,
     getAnimalsViewModel: GetAnimalsViewModel = hiltViewModel(),
-    tokenViewModel: TokenViewModel = hiltViewModel()
+    tokenViewModel: TokenViewModel = hiltViewModel(),
+    navigate: NavHostController
 ) {
 
 
@@ -58,20 +62,21 @@ fun HomePetPage(
 
     tokenViewModel.authToken?.let {
         getAnimalsViewModel.getAnimals(it)
-        GetData(petResult)
+        GetData(petResult, navigate)
     }
 }
 
 @Composable
-fun GetData(petResult: State<PetFinderResult<GetAnimalsResponse>>) {
+fun GetData(petResult: State<PetFinderResult<GetAnimalsResponse>>, navigate: NavHostController) {
     when (val petData = petResult.value) {
         is PetFinderResult.Failure -> {
             Log.d(TAG, "GetData: ${petData.errorMessage}")
         }
+
         is PetFinderResult.Loading -> CircularProgressIndicator()
         is PetFinderResult.Success -> {
             Log.d(TAG, "GetData: ${petData.data}")
-            ShowList(petData.data)
+            ShowList(petData.data, navigate)
             // DisplayItemData()
         }
 
@@ -80,9 +85,9 @@ fun GetData(petResult: State<PetFinderResult<GetAnimalsResponse>>) {
 }
 
 @Composable
-fun ShowList(data: GetAnimalsResponse) {
+fun ShowList(data: GetAnimalsResponse, navigate: NavHostController) {
 
-    val colors = listOf(Color.White, colorResource(R.color.light_purple))
+    //  val colors = listOf(Color.White, colorResource(R.color.light_purple))
 
     Column(
         modifier = Modifier
@@ -91,8 +96,8 @@ fun ShowList(data: GetAnimalsResponse) {
                 brush = Brush.linearGradient(
                     0.0f to colorResource(R.color.light_purple),
                     0.8f to Color.White,
-                    start = Offset(Float.POSITIVE_INFINITY,0f),
-                    end = Offset(0f,Float.POSITIVE_INFINITY)
+                    start = Offset(Float.POSITIVE_INFINITY, 0f),
+                    end = Offset(0f, Float.POSITIVE_INFINITY)
                 )
             )
     ) {
@@ -119,15 +124,18 @@ fun ShowList(data: GetAnimalsResponse) {
             data.animals?.let {
                 items(items = it) { pets ->
                     DisplayItemData(
-                        image = if(pets?.photos?.size != 0) {
-                            pets?.photos?.get(0)?.small ?: "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+                        image = if (pets?.photos?.size != 0) {
+                            pets?.photos?.get(0)?.small
+                                ?: "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
                         } else {
                             "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
                         },
-                            name = pets?.name ?: "N/A",
+                        name = pets?.name ?: "N/A",
                         age = pets?.age ?: "N/A",
                         gender = pets?.gender ?: "N/A",
-                        adoptable = pets?.status ?: "N/A"
+                        adoptable = pets?.status ?: "N/A",
+                        id = pets?.id ?: 0,
+                        navigate
                     )
                 }
             }
@@ -141,11 +149,18 @@ fun DisplayItemData(
     name: String = "",
     age: String = "",
     gender: String = "",
-    adoptable: String = ""
+    adoptable: String = "",
+    id: Int = 0,
+    navigate: NavHostController
 ) {
 
     Card(
-        modifier = Modifier.clip(RoundedCornerShape(20.dp))
+        modifier = Modifier
+            .clickable {
+                Log.d(TAG, "DisplayItemData: $id")
+                navigate.navigate(Pages.HomePetDetails.route + "/$id")
+            }
+            .clip(RoundedCornerShape(20.dp))
     ) {
 
         ConstraintLayout(modifier = Modifier.padding(9.dp)) {
@@ -229,11 +244,11 @@ fun DisplayItemData(
 @Preview()
 @Composable
 fun DisplayPreview(modifier: Modifier = Modifier) {
-    DisplayItemData()
+    DisplayItemData(navigate = NavHostController(LocalContext.current))
 }
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun ShowListPreview(modifier: Modifier = Modifier) {
-    ShowList(GetAnimalsResponse())
+    ShowList(GetAnimalsResponse(), navigate = NavHostController(LocalContext.current))
 }
