@@ -14,4 +14,10 @@
     <color name="line_color_grey">#DFDFDF</color>
     <color name="text_color_grey">#777777</color>
     <color name="text_color_off_black">#333333</color>
+    <color name="off_white">#6BFFFFFF</color>
+    <color name="light_grey_text">#777777</color>
+    <color name="tan_color_background">#FBD9B9</color>
+    <color name="pink_color_background">#F2B6F7</color>
+    <color name="pinkish_color_background">#F7B6BE</color>
+    <color name="icon_background">#E8DFF1</color>
 </resources>

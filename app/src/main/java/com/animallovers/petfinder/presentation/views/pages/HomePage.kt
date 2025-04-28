@@ -30,6 +30,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.presentation.navigation.BottomNavigationPages
+import com.animallovers.petfinder.presentation.util.isThreeButtonNavSystem
 
 @Composable
 fun HomePage(

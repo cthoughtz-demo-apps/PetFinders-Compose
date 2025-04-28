@@ -44,6 +44,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.domain.model.animal.GetAnimalsResponse
 import com.animallovers.petfinder.presentation.navigation.Pages
+import com.animallovers.petfinder.presentation.util.Constants.PLACE_HOLDER
 import com.animallovers.petfinder.presentation.util.PetFinderResult
 import com.animallovers.petfinder.presentation.viewmodel.GetAnimalsViewModel
 import com.animallovers.petfinder.presentation.viewmodel.TokenViewModel
@@ -126,9 +127,9 @@ fun ShowList(data: GetAnimalsResponse, navigate: NavHostController) {
                     DisplayItemData(
                         image = if (pets?.photos?.size != 0) {
                             pets?.photos?.get(0)?.small
-                                ?: "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+                                ?: PLACE_HOLDER
                         } else {
-                            "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+                            PLACE_HOLDER
                         },
                         name = pets?.name ?: "N/A",
                         age = pets?.age ?: "N/A",
@@ -188,7 +189,7 @@ fun DisplayItemData(
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    },
+                    }
             )
 
             Text(

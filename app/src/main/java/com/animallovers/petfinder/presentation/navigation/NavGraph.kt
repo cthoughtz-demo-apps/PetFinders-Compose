@@ -37,7 +37,7 @@ fun SetupNavGraph(
             arguments = listOf(navArgument("animalId"){type = NavType.IntType})
         ) { backStackEntry ->
             val animalId = backStackEntry.arguments?.getInt("animalId") ?: 0
-            HomePetDetailsPage(animalId)
+            HomePetDetailsPage(animalId, navController = navController)
         }
     }
 }

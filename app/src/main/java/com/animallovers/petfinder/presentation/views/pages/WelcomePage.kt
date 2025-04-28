@@ -50,6 +50,7 @@ import androidx.navigation.compose.rememberNavController
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.presentation.navigation.Pages
 import com.animallovers.petfinder.presentation.util.OnBoardingPage
+import com.animallovers.petfinder.presentation.util.isThreeButtonNavSystem
 import com.animallovers.petfinder.presentation.viewmodel.WelcomeViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -110,7 +111,6 @@ fun WelcomePage(
                     }
             )
 
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -163,29 +163,7 @@ fun WelcomePage(
     }
 }
 
-// TODO Move function to a separate util.kt
-@Composable
-fun getNavigationMode(): Int? {
-    val context = LocalContext.current
-    return remember {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            try {
-                Settings.Secure.getInt(
-                    context.contentResolver,
-                    "navigation_mode"
-                )
-            } catch (e: Exception) {
-                null
-            }
-        } else null
-    }
-}
 
-// TODO Move function to a separate util.kt
-@Composable
-fun isThreeButtonNavSystem(): Boolean {
-    return getNavigationMode() == 0 // 0=3-button, 1=2-button, 2=gesture
-}
 
 @Composable
 fun PagerScreen(onBoardingPage: OnBoardingPage) {
