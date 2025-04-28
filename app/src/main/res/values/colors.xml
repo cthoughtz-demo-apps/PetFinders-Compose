@@ -20,4 +20,5 @@
     <color name="pink_color_background">#F2B6F7</color>
     <color name="pinkish_color_background">#F7B6BE</color>
     <color name="icon_background">#E8DFF1</color>
+    <color name="off_black_text">#212325</color>
 </resources>
