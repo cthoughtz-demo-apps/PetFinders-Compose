@@ -3,9 +3,7 @@ package com.animallovers.petfinder.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.animallovers.petfinder.domain.model.animal.GetAnimalResponse
-import com.animallovers.petfinder.domain.model.animal.GetAnimalsResponse
 import com.animallovers.petfinder.domain.usecase.animal.GetAnimalUseCase
-import com.animallovers.petfinder.domain.usecase.animal.GetAnimalsUseCase
 import com.animallovers.petfinder.presentation.util.PetFinderResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

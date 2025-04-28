@@ -80,7 +80,7 @@ fun HomePage(
                         BottomNavigationItem(
                             icon = {
                                 Icon(
-                                    painter = when(page.route) {
+                                    painter = when (page.route) {
                                         "homePet" -> painterResource(R.drawable.pet_home)
                                         "types" -> painterResource(R.drawable.pet)
                                         else -> painterResource(R.drawable.building)
@@ -89,7 +89,12 @@ fun HomePage(
                                     tint = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black
                                 )
                             },
-                            label = { Text(page.label, color = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black) },
+                            label = {
+                                Text(
+                                    page.label,
+                                    color = if (currentRoute == page.route) colorResource(R.color.purple) else Color.Black
+                                )
+                            },
                             selected = currentRoute == page.route,
                             onClick = {
                                 bottomBarNavController.navigate(page.route) {

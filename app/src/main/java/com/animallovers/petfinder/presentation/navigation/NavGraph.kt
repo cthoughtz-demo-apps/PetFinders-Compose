@@ -34,7 +34,7 @@ fun SetupNavGraph(
 
         composable(
             route = Pages.HomePetDetails.route + "/{animalId}",
-            arguments = listOf(navArgument("animalId"){type = NavType.IntType})
+            arguments = listOf(navArgument("animalId") { type = NavType.IntType })
         ) { backStackEntry ->
             val animalId = backStackEntry.arguments?.getInt("animalId") ?: 0
             HomePetDetailsPage(animalId, navController = navController)
