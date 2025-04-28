@@ -32,6 +32,6 @@ fun OrgsPage(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-         Text(text  = "Orgs Page", fontSize = 40.sp, fontWeight = FontWeight.Bold,)
+        Text(text = "Orgs Page", fontSize = 40.sp, fontWeight = FontWeight.Bold)
     }
 }
