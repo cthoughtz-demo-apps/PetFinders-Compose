@@ -172,7 +172,6 @@ fun ShowDisplay(data: GetAnimalResponse, navController: NavHostController) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier
-                .background(color = Color.Yellow)
                 .constrainAs(animalInfoRow) {
                     top.linkTo(animalName.bottom, margin = 5.dp)
                     start.linkTo(parent.start, margin = 10.dp)
@@ -228,7 +227,6 @@ fun ShowDisplay(data: GetAnimalResponse, navController: NavHostController) {
 
         Row(
             modifier = Modifier
-                .background(color = Color.Yellow)
                 .padding(5.dp)
                 .constrainAs(contactRow) {
                     bottom.linkTo(parent.bottom, margin = bottomPaddingLayout)
@@ -379,7 +377,6 @@ fun AnimalDisplayCard(
             .wrapContentWidth()
             .widthIn(max = 115.dp)
             .padding(2.dp)
-            .background(color = Color.Green)
             .clip(RoundedCornerShape(20.dp)),
         backgroundColor = backgroundColor,
     ) {
