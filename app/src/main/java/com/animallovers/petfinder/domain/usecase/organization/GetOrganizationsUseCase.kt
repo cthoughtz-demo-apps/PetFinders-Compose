@@ -1,6 +1,5 @@
 package com.animallovers.petfinder.domain.usecase.organization
 
-import com.animallovers.petfinder.domain.repository.organization.GetOrganizationRepository
 import com.animallovers.petfinder.domain.repository.organization.GetOrganizationsRepository
 import javax.inject.Inject
 

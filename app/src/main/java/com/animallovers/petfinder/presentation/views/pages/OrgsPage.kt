@@ -1,7 +1,6 @@
 package com.animallovers.petfinder.presentation.views.pages
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -36,7 +35,7 @@ fun OrgsPage(modifier: Modifier = Modifier) {
             .padding(top = 100.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
 
-    ) {
+        ) {
         Text(
             text = "Organizations",
             fontSize = 18.sp,
