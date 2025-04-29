@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -12,7 +13,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.animallovers.petfinder.R
 
@@ -28,10 +32,17 @@ fun OrgsPage(modifier: Modifier = Modifier) {
                     start = Offset(Float.POSITIVE_INFINITY, 0f),
                     end = Offset(0f, Float.POSITIVE_INFINITY)
                 )
-            ),
+            )
+            .padding(top = 100.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+
     ) {
-        Text(text = "Orgs Page", fontSize = 40.sp, fontWeight = FontWeight.Bold)
+        Text(
+            text = "Organizations",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.ExtraBold,
+            fontFamily = FontFamily(Font(R.font.dmsans)),
+            color = colorResource(R.color.off_black_text)
+        )
     }
 }
