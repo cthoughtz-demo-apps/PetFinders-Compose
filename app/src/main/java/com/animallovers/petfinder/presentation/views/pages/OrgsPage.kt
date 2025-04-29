@@ -1,6 +1,5 @@
 package com.animallovers.petfinder.presentation.views.pages
 
-import android.content.DialogInterface.OnShowListener
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -31,6 +30,7 @@ import com.animallovers.petfinder.presentation.viewmodel.TokenViewModel
 
 
 private const val TAG = "OrgsPage"
+
 @Composable
 fun OrgsPage(
     getOrganizationsViewModel: OrganizationsViewModel = hiltViewModel(),
@@ -49,14 +49,16 @@ fun OrgsPage(
 @Composable
 fun GetData(orgResult: State<PetFinderResult<GetOrganizationsResponse>>) {
 
-    when(val orgData = orgResult.value) {
+    when (val orgData = orgResult.value) {
         is PetFinderResult.Failure -> {
             Log.d(TAG, "GetData: ${orgData.errorMessage}")
         }
+
         is PetFinderResult.Loading -> CircularProgressIndicator()
         is PetFinderResult.Success -> {
             ShowList(orgData.data)
         }
+
         else -> Log.d(TAG, "GetData: State None")
     }
 }
