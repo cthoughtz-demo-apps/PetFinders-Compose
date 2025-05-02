@@ -18,9 +18,9 @@ class OrganizationViewModel @Inject constructor(
     private val getOrganizationUseCase: GetOrganizationUseCase
 ) : ViewModel() {
 
-   private val _organizationResultFlow =
-    MutableStateFlow<PetFinderResult<GetOrganizationResponse>>(PetFinderResult.None)
-   val organizationResultFlow = _organizationResultFlow.asStateFlow()
+    private val _organizationResultFlow =
+        MutableStateFlow<PetFinderResult<GetOrganizationResponse>>(PetFinderResult.None)
+    val organizationResultFlow = _organizationResultFlow.asStateFlow()
 
     fun getOrganization(id: String, accessToken: String) {
         _organizationResultFlow.update { PetFinderResult.Loading }
