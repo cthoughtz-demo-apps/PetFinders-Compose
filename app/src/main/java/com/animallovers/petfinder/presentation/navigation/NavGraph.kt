@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.animallovers.petfinder.presentation.views.pages.HomePage
 import com.animallovers.petfinder.presentation.views.pages.HomePetDetailsPage
+import com.animallovers.petfinder.presentation.views.pages.OrgsDetailsPage
 import com.animallovers.petfinder.presentation.views.pages.SplashPage
 import com.animallovers.petfinder.presentation.views.pages.WelcomePage
 
@@ -38,6 +39,14 @@ fun SetupNavGraph(
         ) { backStackEntry ->
             val animalId = backStackEntry.arguments?.getInt("animalId") ?: 0
             HomePetDetailsPage(animalId, navController = navController)
+        }
+
+        composable(
+            route = Pages.OrgPetDetails.route + "/{orgId}",
+            arguments = listOf(navArgument("orgId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val orgId = backStackEntry.arguments?.getInt("orgId") ?: 0
+            OrgsDetailsPage(orgId, navController = navController)
         }
     }
 }
