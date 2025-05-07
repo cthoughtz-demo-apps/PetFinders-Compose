@@ -122,7 +122,7 @@ fun HomePage(
             ) {
             composable(BottomNavigationPages.HomePet.route) { HomePetPage(navigate = navController) }
             composable(BottomNavigationPages.Types.route) { TypesPages() }
-            composable(BottomNavigationPages.Orgs.route) { OrgsPage() }
+            composable(BottomNavigationPages.Orgs.route) { OrgsPage(navigate = navController) }
         }
     }
 }

@@ -26,6 +26,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -36,9 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.animallovers.petfinder.R
 import com.animallovers.petfinder.domain.model.organization.GetOrganizationsResponse
+import com.animallovers.petfinder.presentation.navigation.Pages
 import com.animallovers.petfinder.presentation.util.Constants.PLACE_HOLDER
 import com.animallovers.petfinder.presentation.util.PetFinderResult
 import com.animallovers.petfinder.presentation.viewmodel.OrganizationsViewModel
@@ -51,6 +54,7 @@ private const val TAG = "OrgsPage"
 fun OrgsPage(
     getOrganizationsViewModel: OrganizationsViewModel = hiltViewModel(),
     tokenViewModel: TokenViewModel = hiltViewModel(),
+    navigate: NavHostController
 ) {
 
     val orgResult =
@@ -58,12 +62,15 @@ fun OrgsPage(
 
     tokenViewModel.authToken?.let {
         getOrganizationsViewModel.getOrganizations(it)
-        GetData(orgResult)
+        GetData(orgResult, navigate)
     }
 }
 
 @Composable
-fun GetData(orgResult: State<PetFinderResult<GetOrganizationsResponse>>) {
+fun GetData(
+    orgResult: State<PetFinderResult<GetOrganizationsResponse>>,
+    navigate: NavHostController
+) {
 
     when (val orgData = orgResult.value) {
         is PetFinderResult.Failure -> {
@@ -72,7 +79,7 @@ fun GetData(orgResult: State<PetFinderResult<GetOrganizationsResponse>>) {
 
         is PetFinderResult.Loading -> CircularProgressIndicator()
         is PetFinderResult.Success -> {
-            ShowList(orgData.data)
+            ShowList(orgData.data, navigate)
         }
 
         else -> Log.d(TAG, "GetData: State None")
@@ -81,7 +88,7 @@ fun GetData(orgResult: State<PetFinderResult<GetOrganizationsResponse>>) {
 
 
 @Composable
-fun ShowList(data: GetOrganizationsResponse) {
+fun ShowList(data: GetOrganizationsResponse, navigate: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -117,7 +124,7 @@ fun ShowList(data: GetOrganizationsResponse) {
         ) {
             data.organizations?.let {
                 items(items = it) { organizations ->
-                    DisplayOrganizationsItemData(organizations)
+                    DisplayOrganizationsItemData(organizations, navigate)
 //                    DisplayItemData(
 //                        image = if (organizations?.photos?.size != 0) {
 //                            organizations?.photos?.get(0)?.small
@@ -139,14 +146,18 @@ fun ShowList(data: GetOrganizationsResponse) {
 }
 
 @Composable
-fun DisplayOrganizationsItemData(organizations: GetOrganizationsResponse.Organization?) {
+fun DisplayOrganizationsItemData(
+    organizations: GetOrganizationsResponse.Organization?,
+    navigate: NavHostController
+) {
 
     Card(
         modifier = Modifier
             //.size(150.dp, 15.dp)
             .clickable {
-                //Log.d(TAG, "DisplayItemData: $id")
-                //navigate.navigate(Pages.HomePetDetails.route + "/$id")
+                Log.d(TAG, "DisplayItemData: ${organizations?.id}")
+                navigate.navigate(Pages.OrgPetDetails.route + "/${organizations?.id}")
+                // navigate.navigate(Pages.OrgPetDetails.route + "/FL1618")
             }
             .clip(RoundedCornerShape(20.dp))
     ) {
@@ -189,5 +200,9 @@ fun DisplayOrganizationsItemData(organizations: GetOrganizationsResponse.Organiz
 @Preview
 @Composable
 fun DisplayOrganizationsItemDataPreview(modifier: Modifier = Modifier) {
-    DisplayOrganizationsItemData(organizations = GetOrganizationsResponse.Organization())
+    DisplayOrganizationsItemData(
+        organizations = GetOrganizationsResponse.Organization(), navigate = NavHostController(
+            LocalContext.current
+        )
+    )
 }

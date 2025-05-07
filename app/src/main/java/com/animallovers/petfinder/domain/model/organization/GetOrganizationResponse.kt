@@ -106,15 +106,15 @@ data class GetOrganizationResponse(
 
         data class SocialMedia(
             @SerializedName("facebook")
-            var facebook: Any? = null,
+            var facebook: String? = null,
             @SerializedName("instagram")
-            var instagram: Any? = null,
+            var instagram: String? = null,
             @SerializedName("pinterest")
-            var pinterest: Any? = null,
+            var pinterest: String? = null,
             @SerializedName("twitter")
-            var twitter: Any? = null,
+            var twitter: String? = null,
             @SerializedName("youtube")
-            var youtube: Any? = null
+            var youtube: String? = null
         )
     }
 }

@@ -5,5 +5,5 @@ sealed class Pages(val route: String) {
     object Home : Pages(route = "home_page")
     object Splash : Pages(route = "splash_page")
     object HomePetDetails : Pages(route = "home_pet_detail")
-    object OrgPetDetails: Pages(route = "org_detail")
+    object OrgPetDetails : Pages(route = "org_detail")
 }
